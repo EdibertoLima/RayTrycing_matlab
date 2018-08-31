@@ -1,4 +1,4 @@
-% Ponto de visão
+% Ponto de visÃ£o
 e = [10 10 10];
 
 objetos = {};
@@ -14,26 +14,26 @@ objetos{2}.tipo = 'esfera';
 objetos{2}.centro = [5 7 0];
 objetos{2}.raio = 2;
 
-% Iluminação
+% IluminaÃ§Ã£o
 % l = kd * 
 % normal = (centro - pt) / norma
 
-% Ponto de iluminação
+% Ponto de iluminaÃ§Ã£o
 ponto_iluminacao = [7 0 -1];
 
-% Distância focal
+% DistÃ¢ncia focal
 d = 5;
 
-% Vetor unitário w
+% Vetor unitÃ¡rio w
 w = e / norm(e);
 [~,t_aux] = min(abs(e));
 t = e;
 t(t_aux) = 1;
 
-% Vetor unitário u
+% Vetor unitÃ¡rio u
 u = (cross(t, w)) / (norm(cross(t, w)));
 
-% Vetor unitário v
+% Vetor unitÃ¡rio v
 v = cross(u, w);
 
 linhas = 420;
@@ -74,11 +74,11 @@ for i = 1:linhas
         u_value = l_param + (r_param - l_param) * (i + 0.5) / linhas;
         v_value = b_param + (j_param - b_param) * (j + 0.5) / colunas;
         
-        % Oblíquo
+        % OblÃ­quo
         % origem = e;
         % direcao = -d * w + u_value * u + v_value * v
         
-        % Ortográfico
+        % OrtogrÃ¡fico
         origem = e + u_value * u + v_value * v;
         direcao = -w;
         min_t = 200000000;
@@ -139,12 +139,12 @@ for i = 1:linhas
             % Intensidade da cor da luz
             pp = 0.5;
             
-            % Definição da cor considerando o blinn phong
+            % DefiniÃ§Ã£o da cor considerando o blinn phong
             imagem(i, j, 1) = ka(1)*ia + objetos{indice_min}.cor(1)* ii * max(0, dot(n, l)) + ks(1) * ii * max(0, dot(n, h)^pp);
             imagem(i, j, 2) = ka(2)*ia + objetos{indice_min}.cor(2)* ii * max(0, dot(n, l)) + ks(2) * ii * max(0, dot(n, h)^pp);
             imagem(i, j, 3) = ka(3)*ia + objetos{indice_min}.cor(3)* ii * max(0, dot(n, l)) + ks(3) * ii * max(0, dot(n, h)^pp);
             
-% Definição da cor considerando apenas lambert
+% DefiniÃ§Ã£o da cor considerando apenas lambert
 %             imagem(i, j, 1) = objetos{indice_min}.cor(1)* ii * max(0, dot(n, l));
 %             imagem(i, j, 2) = objetos{indice_min}.cor(2)* ii * max(0, dot(n, l));
 %             imagem(i, j, 3) = objetos{indice_min}.cor(3)* ii * max(0, dot(n, l));
